@@ -1,16 +1,16 @@
 #!/usr/bin/env python3
-"""Obsidian 笔记 -> Hugo 博客 导入器
+"""Obsidian 笔记 -> Shirone(Astro) 博客 导入器
 
 用法:
     python tools/import_obsidian.py <笔记文件夹> [更多文件夹...]
 
 功能:
   - [[链接]]       -> 若目标也已导入则生成站内链接, 否则转为加粗文本
-  - ![[图片.png]]  -> 图片复制到 static/images/ 并改写路径
-  - > [!callout]   -> FixIt admonition shortcode
+  - ![[图片.png]]  -> 图片复制到 public/images/ 并改写路径
+  - > [!callout]   -> 保留原样 (Shirone 内置 GitHub admonition 支持, 与 Obsidian 语法兼容)
   - ==高亮==       -> <mark>高亮</mark>
   - 代码块内部不做任何转换 (支持 ``` 与 ```` 嵌套)
-  - frontmatter: title/date/tags 保留, 缺 date 用文件修改时间
+  - frontmatter: title/tags 保留, date 转为 published, 缺省用文件修改时间
 """
 
 import re
@@ -20,8 +20,8 @@ import hashlib
 from pathlib import Path
 
 BLOG = Path(__file__).resolve().parent.parent
-POSTS = BLOG / "content" / "posts"
-IMAGES = BLOG / "static" / "images"
+POSTS = BLOG / "src" / "content" / "posts"
+IMAGES = BLOG / "public" / "images"
 
 CALLOUT_MAP = {
     "note": "note", "abstract": "abstract", "summary": "abstract", "tldr": "abstract",
@@ -222,16 +222,12 @@ def main():
                 out_lines.append(line)
                 i += 1
                 continue
-            if not in_fence and CALLOUT_RE.match(line):
-                block, i = conv.convert_callout(lines, i)
-                out_lines.append(block)
-                continue
             out_lines.append(line if in_fence else conv.convert_line(line, f.parent))
             i += 1
 
         date = fm.get("date") or __import__("datetime").date.fromtimestamp(f.stat().st_mtime).isoformat()
         tags = fm.get("tags") or []
-        fm_out = ["---", f"title: {yq(fm.get('title') or f.stem)}", f"date: {date}", "draft: false"]
+        fm_out = ["---", f"title: {yq(fm.get('title') or f.stem)}", f"published: {date}", "draft: false"]
         if tags:
             fm_out.append("tags:")
             fm_out += [f"  - {t}" for t in tags]
@@ -241,7 +237,7 @@ def main():
         imported.append(target)
         print(f"导入: {f.name}  ->  {target.name}")
 
-    print(f"\n共 {len(imported)} 篇 | 转换: {total['callout']} 个callout, "
+    print(f"\n共 {len(imported)} 篇 | 转换: "
           f"{total['站内链接']} 个站内链接, {total['双链转加粗']} 个双链, {total['图片']} 张图片")
     if total["嵌入笔记"]:
         print(f"⚠ {total['嵌入笔记']} 处嵌入了其他笔记, 已转为文字引用")
