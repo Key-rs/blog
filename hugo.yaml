@@ -1,5 +1,5 @@
-# 网址：部署到 Cloudflare Pages 后，改成你的 xxx.pages.dev 或自定义域名
-baseURL: "https://example.org/"
+# 网址：绑定自定义域名后，改成自定义域名即可
+baseURL: "https://blog-21k.pages.dev/"
 languageCode: "zh-cn"
 defaultContentLanguage: "zh"
 title: "Shibo 的博客"
