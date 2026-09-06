@@ -70,13 +70,11 @@ export const siteConfig: SiteConfig = withUserConfig("site", {
 		homeText: {
 			// 仅在首页 Banner 中显示，标题与副标题会上下居中排列。
 			enable: true,
-			title: "Shirone",
+			title: "Key 的博客",
 			subtitle: [
-				"特別なことはないけど、君がいると十分です",
-				"今でもあなたは私の光",
-				"君ってさ、知らないうちに私の毎日になってたよ",
-				"君と話すと、なんか毎日がちょっと楽しくなるんだ",
-				"今日はなんでもない日。でも、ちょっとだけいい日",
+				"把折腾变成文字，把热爱变成作品",
+				"嵌入式 / 机器人 / 硬件",
+				"欢迎来到我的小站 ✧",
 			],
 			typewriter: {
 				// 副标题逐字显示；关闭后直接显示完整副标题。
