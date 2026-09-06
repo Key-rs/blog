@@ -12,7 +12,7 @@ import { withUserConfig } from "../utils/config-overlay.ts";
 export const siteConfig: SiteConfig = withUserConfig("site", {
 	site: "https://blog-21k.pages.dev/",
 	base: "/",
-	title: "Shibo 的博客",
+	title: "Key 的博客",
 	subtitle: "嵌入式 / 机器人 / 硬件折腾笔记",
 	// 电脑端顶栏标题与导航内容区域："left" 左对齐，"center" 居中。
 	topAppBar: {
