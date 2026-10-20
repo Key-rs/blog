@@ -50,4 +50,4 @@ if run(["git", "commit", "-m", msg]) != 0 and not dry:
     sys.exit(1)
 if run(["git", "push"]) != 0:
     sys.exit("推送失败")
-print("\n✅ 已推送, Cloudflare 自动构建中, 约 2-3 分钟后上线 https://blog-21k.pages.dev")
+print("\n✅ 已推送, Cloudflare 自动构建中, 约 2-3 分钟后上线 https://shigure.uk")

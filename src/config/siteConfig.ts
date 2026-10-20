@@ -10,7 +10,7 @@ import { withUserConfig } from "../utils/config-overlay.ts";
  * 类型见 src/types/config.ts。
  */
 export const siteConfig: SiteConfig = withUserConfig("site", {
-	site: "https://blog-21k.pages.dev/",
+	site: "https://shigure.uk/",
 	base: "/",
 	title: "Key 的博客",
 	subtitle: "嵌入式 / 机器人 / 硬件折腾笔记",

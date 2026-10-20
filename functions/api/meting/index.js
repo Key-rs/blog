@@ -268,7 +268,7 @@ async function handleApi(sp) {
 			const body = await kugouPlaylistTracks(id);
 			if (debug) return json(body);
 			const lists = body?.data?.lists ?? body?.data?.info ?? body?.data?.songs ?? [];
-			const origin = new URL(sp.get("__origin") || "https://blog-21k.pages.dev").origin;
+			const origin = new URL(sp.get("__origin") || "https://shigure.uk").origin;
 			const tracks = lists
 				.map((t, i) => {
 					const name = t.name ?? t.songname ?? t.filename?.split("-")?.pop() ?? "";

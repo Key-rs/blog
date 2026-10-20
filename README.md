@@ -1,6 +1,6 @@
 # Key 的博客
 
-基于 [Shirone](https://github.com/LyraVoid/Shirone)（Astro）主题，托管在 Cloudflare Pages：https://blog-21k.pages.dev
+基于 [Shirone](https://github.com/LyraVoid/Shirone)（Astro）主题，托管在 Cloudflare Pages：https://shigure.uk
 
 ## 写文章
 
